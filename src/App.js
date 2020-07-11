@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function App() {
   const outerRef = useRef(null);
-  const [inViewport, setInViewport] = useState(true);
+  const [inViewport, setInViewport] = useState(false);
 
   useEffect(() => {
     const onChange = (entries) => {
@@ -55,7 +55,7 @@ export default function App() {
 
   return (
     <>
-      <div id="previous-content">Scroll down </div>
+      <div id="previous-content"></div>
       <div ref={outerRef} id="outer-box">
         {inViewport && (
           <motion.div
@@ -64,12 +64,18 @@ export default function App() {
             animate="visible"
           >
             <motion.div variants={fadeInUp}>
-              <h2>Una zoonosis emergente</h2>
+              <h2>
+                Sint dolor cupidatat proident laborum minim exercitation tempor
+                nostrud enim excepteur ad magna.
+              </h2>
             </motion.div>
 
             <motion.div variants={fadeInUp}>
-              Una zoonosis es una enfermedad infecciosa transmitida de un
-              animal...
+              Adipisicing dolore laboris cillum dolor amet veniam duis.
+              Voluptate adipisicing et consectetur eu ullamco nulla. Magna velit
+              incididunt deserunt deserunt velit occaecat. Elit nulla id irure
+              ex cillum non. Proident et ipsum aliqua ipsum ad consectetur velit
+              duis amet non proident.
             </motion.div>
           </motion.div>
         )}
