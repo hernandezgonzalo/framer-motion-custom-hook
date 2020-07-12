@@ -3,7 +3,7 @@ body {
 }
 
 #outer-box {
-  background: rgb(23, 128, 84);
+  background: darkslateblue;
   color: white;
   min-height: 240px;
   display: flex;

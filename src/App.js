@@ -1,57 +1,11 @@
-import React, { useRef, useEffect, useState } from "react";
-import "./index.css";
+import React, { useRef } from "react";
 import { motion } from "framer-motion";
+import useObserver from "./hooks/useObserver";
+import { fadeInUp, fadeInContainerWithStagger } from "./animations/fadeIn";
 
 export default function App() {
   const outerRef = useRef(null);
-  const [inViewport, setInViewport] = useState(false);
-
-  useEffect(() => {
-    const onChange = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.target === outerRef.current) {
-          if (entry.isIntersecting) {
-            setInViewport(true);
-          } else {
-            setInViewport(false);
-          }
-        }
-      });
-    };
-    const observer = new IntersectionObserver(onChange, { threshold: 0.5 });
-    observer.observe(outerRef.current);
-  }, [outerRef]);
-
-  // Framer motion animations
-  const fadeInContainerWithStagger = {
-    hidden: {
-      opacity: 0,
-    },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.25,
-        type: "tween",
-        ease: "easeIn",
-        when: "beforeChildren",
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const fadeInUp = {
-    hidden: {
-      opacity: 0,
-      y: 40,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-      },
-    },
-  };
+  const [inViewport] = useObserver(outerRef);
 
   return (
     <>
