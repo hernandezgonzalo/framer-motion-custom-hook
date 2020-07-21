@@ -1,18 +1,13 @@
 import { useEffect, useState } from "react";
 
-const useObserver = (outerRef) => {
+const useObserver = outerRef => {
   const [inViewport, setInViewport] = useState(false);
 
   useEffect(() => {
-    const onChange = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.target === outerRef.current) {
-          if (entry.isIntersecting) {
-            setInViewport(true);
-          } else {
-            setInViewport(false);
-          }
-        }
+    const onChange = entries => {
+      entries.forEach(entry => {
+        if (entry.target === outerRef.current)
+          setInViewport(entry.isIntersecting);
       });
     };
     const observer = new IntersectionObserver(onChange, { threshold: 0.5 });
